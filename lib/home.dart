@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'main.dart';
 import 'analysis.dart';
@@ -7,6 +8,8 @@ import 'inputForm.dart';
 import 'root.dart';
 
 class Home extends StatefulWidget {
+  //final User user;
+  //Home(this.user);
   @override
   _MyHome createState() => _MyHome();
 }
@@ -15,7 +18,7 @@ class _MyHome extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title: const Center(child: Text("Home")),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -25,7 +28,7 @@ class _MyHome extends State<Home> {
               if (!snapshot.hasData) return const Text('Loading...');
               return ListView.builder(
                 itemCount: snapshot.data.docs.length,
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 itemBuilder: (context, index) => _buildListItem(context, snapshot.data.docs[index]),
               );
             }

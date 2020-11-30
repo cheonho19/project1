@@ -1,40 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 import 'home.dart';
 import 'analysis.dart';
 import 'inputForm.dart';
 import 'main.dart';
-
-/*
-class Footer extends StatefulWidget{
-  @override
-  _MyFooter createState() => _MyFooter();
-}
-
-class _MyFooter extends State<Footer> {
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home')
-        ),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Setteing')
-        ),
-      ],
-    );
-  }
-}
-*/
+import 'authentication.dart';
 
 class RootWidget extends StatefulWidget {
-
-  RootWidget({Key key}) : super(key: key);
+  final User user;
+  RootWidget(this.user);
+  //RootWidget({Key key}) : super(key: key);
   @override
   _RootWidgetState createState() => _RootWidgetState();
 }
@@ -51,7 +29,7 @@ class _RootWidgetState extends State<RootWidget> {
 
   static const _footerItemNames = [
     'Home',
-    'Analysis'
+    'Analysis',
   ];
 
   var _routes = [
@@ -109,6 +87,7 @@ class _RootWidgetState extends State<RootWidget> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: _routes.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
